@@ -67,5 +67,14 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(3, items[22].quality)
         self.assertEquals(2, items[23].quality)
 
+    def test_Sulfuras(self):
+        name = "Sulfuras"
+        sell_in = [11, 10, 6, 5, 0, -1]
+        items = [Item(name, s, 80) for s in sell_in]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        for item in items:
+            self.assertEquals(80, item.quality)
+
 if __name__ == '__main__':
     unittest.main()
