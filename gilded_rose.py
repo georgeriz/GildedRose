@@ -5,6 +5,14 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
+            if item.name == "Conjured":
+                if item.sell_in > 0:
+                    item.quality -= 2
+                else:
+                    item.quality -= 4
+                if item.quality < 0:
+                    item.quality = 0
+                continue
             if item.name != "Aged Brie" and item.name != "Backstage":
                 if item.quality > 0:
                     if item.name != "Sulfuras":
