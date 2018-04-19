@@ -3,6 +3,24 @@ import unittest
 from gilded_rose import Item, GildedRose
 
 class GildedRoseTest(unittest.TestCase):
+    def update_item(self, name, sell_in, quality):
+        items = [Item(name, sell_in, quality)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        return items[0]
+        
+    def test_foo_before_sellin(self):
+        item = self.update_item(name="foo", sell_in=11, quality=50)
+        self.assertEquals(49, item.quality)
+
+    def test_foo_after_sellin(self):
+        item = self.update_item(name="foo", sell_in=0, quality=50)
+        self.assertEquals(48, item.quality)
+
+    def test_foo_zero_quality_after_sellin(self):
+        item = self.update_item(name="foo", sell_in=0, quality=0)
+        self.assertEquals(0, item.quality)
+
     def test_foo(self):
         name = "foo"
         sell_in = [11, 10, 6, 5, 0, -1]
