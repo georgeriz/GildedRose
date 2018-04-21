@@ -29,14 +29,14 @@ class GildedRoseTest(unittest.TestCase):
         item = self.update_item(name="Aged Brie", sell_in=10, quality=50)
         self.assertEquals(50, item.quality)
 
-    def test_Sulfuras(self):
-        name = "Sulfuras"
-        sell_in = [11, 10, 6, 5, 0, -1]
-        items = [Item(name, s, 80) for s in sell_in]
-        gilded_rose = GildedRose(items)
-        gilded_rose.update_quality()
-        for item in items:
-            self.assertEquals(80, item.quality)
+
+    def test_sulfuras_before_sellin(self):
+        item = self.update_item(name="Sulfuras", sell_in=10, quality=80)
+        self.assertEquals(80, item.quality)
+
+    def test_sulfuras_after_sellin(self):
+        item = self.update_item(name="Sulfuras", sell_in=0, quality=80)
+        self.assertEquals(80, item.quality)  
 
     def test_Backstage(self):
         name = "Backstage"
